@@ -19,8 +19,9 @@ steps:
     image: node:alpine
     commands:
       -  npm test
-  - name: publish
-    image: plugins/github-release
+  - name: slack
+    image: plugins/slack
     settings:
-      api_key: from_secret: github_token
-      files: *
+      webhook: https://hooks.slack.com/services/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
+    channel: test-ci-victor
+    username: drone
