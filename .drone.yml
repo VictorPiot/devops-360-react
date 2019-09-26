@@ -7,3 +7,21 @@ steps:
     image: node:alpine
     commands:
       - echo 'Run CI / CD Pipeline on Drone'
+  - name: deps
+  image: node:alpine
+  commands:
+    - npm install
+  - name: build
+  image: node:alpine
+  commands:
+    - npm run build
+  - name: test
+  image: node:alpine
+  commands:
+    - npm test
+  - name: publish
+  image: plugins/github-release
+  settings:
+    api_key: from_secret: github_token
+    files: *
+  
